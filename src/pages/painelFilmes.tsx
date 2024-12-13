@@ -229,12 +229,13 @@ export default function PainelFilmes() {
                   <p className="text-gray-600">{filme.plot}</p>
                 </div>
                 <button
-                  onClick={() => handleRemoveFilm(filme.id)} // Passa o id para a função de remoção
-                  className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600"
-                  title="Remover filme"
-                >
-                  Remover
-                </button>
+  onClick={() => filme.id !== undefined && handleRemoveFilm(filme.id)}
+  className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600"
+  title="Remover filme"
+>
+  Remover
+</button>
+
               </li>
             ))}
           </ul>

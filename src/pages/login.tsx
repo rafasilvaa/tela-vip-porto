@@ -13,12 +13,12 @@ export default function Login() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     if (!email || !senha) {
       setError('Por favor, preencha todos os campos.');
       return;
     }
-
+  
     try {
       const response = await fetch('http://localhost:3000/api/login', {
         method: 'POST',
@@ -27,40 +27,47 @@ export default function Login() {
         },
         body: JSON.stringify({ email, senha }),
       });
-
+  
       if (!response.ok) {
         const errorMessage = await response.text();
         throw new Error(errorMessage || 'Credenciais inválidas');
       }
-
+  
       const data = await response.json();
       console.log('Login bem-sucedido:', data);
-
+  
       if (!data.token || !data.id) {
         throw new Error('Token ou ID ausente na resposta');
       }
-
-      // Store token and userId in localStorage
+  
+      // Armazenar o token, ID e nome do usuário no localStorage
       localStorage.setItem('token', data.token);
       localStorage.setItem('userId', data.id);
       localStorage.setItem('userName', data.nome);
-
-      // Redirect to main page after successful login
+  
+      // Redirecionar para a página principal após login bem-sucedido
       router.push('/painelFilmes');
     } catch (err) {
       console.error('Erro ao fazer login:', err);
-      setError(handleLoginError(err)); // Call helper function to handle error
+      
+      if (err instanceof Error) {
+        // Chamar a função de tratamento de erro se for uma instância de Error
+        setError(handleLoginError(err));
+      } else {
+        // Lidar com erros inesperados
+        setError('Ocorreu um erro desconhecido.');
+      }
     }
   };
   
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     if (!nome || !email || !senha) {
       setError('Por favor, preencha todos os campos.');
       return;
     }
-
+  
     try {
       const response = await fetch('http://localhost:3000/api/usuario', {
         method: 'POST',
@@ -69,20 +76,28 @@ export default function Login() {
         },
         body: JSON.stringify({ nome, email, senha }),
       });
-
+  
       if (!response.ok) {
         const errorMessage = await response.text();
         throw new Error(errorMessage || `Erro: ${response.statusText}`);
       }
-
+  
       const data = await response.json();
       console.log('Resposta da API de registro:', data);
-
+  
+      // Redirecionar para a página de login após registro bem-sucedido
       router.push('/login');
       setIsRegistering(false);
     } catch (err) {
       console.error('Erro ao registrar usuário:', err);
-      setError(handleLoginError(err)); // Call helper function to handle error
+  
+      if (err instanceof Error) {
+        // Chamar a função de tratamento de erro se for uma instância de Error
+        setError(handleLoginError(err));
+      } else {
+        // Lidar com erros inesperados
+        setError('Ocorreu um erro desconhecido.');
+      }
     }
   };
   
