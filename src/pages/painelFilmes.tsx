@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 interface Filme {
   id?: number;
@@ -219,11 +220,13 @@ export default function PainelFilmes() {
           <ul className="space-y-4">
             {filmes.map((filme) => (
               <li key={filme.id} className="flex items-center gap-6">
-                <img
-                  src={filme.urlimagem}
-                  alt={filme.nome}
-                  className="w-40 h-40 object-contain rounded-md flex-shrink-0"
-                />
+<Image
+  src={filme.urlimagem}
+  alt={filme.nome}
+  width={160} // 40 * 4 (em pixels)
+  height={160} // 40 * 4 (em pixels)
+  className="object-contain rounded-md flex-shrink-0"
+/>
                 <div className="flex flex-col flex-grow">
                   <h3 className="text-lg font-semibold">{filme.nome}</h3>
                   <p className="text-gray-600">{filme.plot}</p>
@@ -246,11 +249,13 @@ export default function PainelFilmes() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
             <div className="flex flex-col items-center">
-              <img
-                src={buscaResultado.url_img}
-                alt={buscaResultado.nome}
-                className="w-48 h-48 object-contain rounded-md mb-4"
-              />
+            <Image
+  src={buscaResultado.url_img}
+  alt={buscaResultado.nome}
+  width={192} // 48 * 4 (em pixels)
+  height={192} // 48 * 4 (em pixels)
+  className="object-contain rounded-md mb-4"
+/>
               <h4 className="text-lg font-semibold">{buscaResultado.nome}</h4>
               <p className="text-gray-600 text-center mb-4">{buscaResultado.plot}</p>
               <div className="flex gap-4">
