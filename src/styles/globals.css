@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.opa {
+  background-image: url('../components/img/mario.jpg'); /* Replace with your image path */
+  background-size: cover; /* Resize image to fit container */
+  background-position: center; /* Center image horizontally and vertically */
+  background-repeat: no-repeat; /* Prevent image tiling */
+  min-height: 100vh; /* Set minimum height for full viewport coverage */
+}
+
+/* Estilos gerais */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Logo */
+.logo-container {
+  text-align: center; /* Centraliza a logo horizontalmente */
+  margin-top: 20px; /* Espaço superior */
+  position: absolute;
+  width: 100%;
+  top: 20px; /* Coloca a logo no topo da página */
+}
+
+.logo {
+  font-family: 'Arial', sans-serif;
+  font-size: 5rem; /* Aumenta o tamanho da fonte */
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilo do texto 'Tela' */
+.text-tela {
+  color: #ffffff; /* Cor branca para 'Tela' */
+  margin-right: 10px; /* Espaço entre 'Tela' e 'VIP' */
+}
+
+/* Estilo do texto 'VIP' */
+.text-vip {
+  color: #FFD700; /* Cor dourada para 'VIP' */
+}
+
+/* Estilo para garantir que o fundo da página não fique branco */
+body {
+  background-color: transparent; /* Remover fundo branco */
+  font-family: 'Arial', sans-serif;
+}
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Impede o scroll horizontal */
+}
+
+#root, .__next {
+  height: 100%; /* Garantir que o container da aplicação ocupe a altura total */
+}
